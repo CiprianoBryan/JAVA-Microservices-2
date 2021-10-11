@@ -48,3 +48,15 @@ apache tomcat embebido.
 Esta clase tendrá la anotación @SpringBootApplication, y será una interface que tiene la anotación
 @SpringBootConfiguration para cargar las configuraciones (resources > application.properties) y @
 ComponentScan para hacer un escaneo de todas las clases del proyecto
+
+###############################################################################
+############################## DEPENDENCIAS ###################################
+###############################################################################
+
+Spring Web: Provee apache tomcat embebido, crear aplicaciones API RESTful.
+Spring Data JPA: Para el manejo de la base de datos.
+H2 Database: Es una base de datos en memoria.
+Lombok: Libreria de anotaciones Java (reducción de código).
+Config Client: Para la conexión con el servidor Spring Cloud Config.
+Eureka Discovery Client: Registrar servicios, y aplicar Load Balancer.
+Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada solicitud.

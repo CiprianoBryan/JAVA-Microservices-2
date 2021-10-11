@@ -1,13 +1,13 @@
-package academy.arima.demo01;
+package academy.arima.store.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Demo01Application {
+public class ServiceProductApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Demo01Application.class, args);
+		SpringApplication.run(ServiceProductApplication.class, args);
 	}
 
 }

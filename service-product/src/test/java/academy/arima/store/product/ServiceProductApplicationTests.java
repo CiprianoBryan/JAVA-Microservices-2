@@ -1,10 +1,10 @@
-package academy.arima.demo01;
+package academy.arima.store.product;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Demo01ApplicationTests {
+class ServiceProductApplicationTests {
 
 	@Test
 	void contextLoads() {
