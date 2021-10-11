@@ -60,3 +60,22 @@ Lombok: Libreria de anotaciones Java (reducción de código).
 Config Client: Para la conexión con el servidor Spring Cloud Config.
 Eureka Discovery Client: Registrar servicios, y aplicar Load Balancer.
 Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada solicitud.
+
+###############################################################################
+################################## DATOS ######################################
+###############################################################################
+
+- @Entity: Para definir nuestras clases como entidad.
+- @Table(name = "table_name"): Usamos cuando el nombre de nuestra tabla es distinta de nuestra clase.
+- @Id: Para inidicar nuestra llave primaria.
+- @GeneratedValue(strategy = GenerationType.IDENTITY): Para que el valor sea autoincrementable.
+- @Data = @Getter + @Setter + @HashCode + @ToString + Equals
+- @Column(name = "create_at"): Lo usamos solo cuando el nombre del campo de la clase sea distinto al de la BD.
+- @Temporal(TemporalType.TIMESTAMP): Definimos el formato del tiempo en el campo seleccionado.
+- @ManyToOne(fetch = FetchType.LAZY): Relación ManyToOne, Lazy carga los datos solo cuando se le llame.
+- @JoinColumn(name = "category_id"): Indica que campo será la clave foranea indicada en name.
+- JpaRepository: Se colocan la entidad del repositorio y el tipo de dato de la llave primaria (Id).
+  > Reemplaza la clase DAO.
+  > Implementa varios métodos que utilizaremos, además extiende de:
+  > PagingAndSorting..: Para el paginado automático.
+  > QueryBy..: Genera automáticamente las querys.
