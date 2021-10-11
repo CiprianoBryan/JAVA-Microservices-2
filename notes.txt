@@ -1,0 +1,50 @@
+###############################################################################
+############################## SPRING CLOUD ###################################
+###############################################################################
+
+Arquitectura:
+
+       +---------+     +------------+      +----------------+    +----------+
+       |         |     |    Load    |      |                |    | Logging  |
+       |  Edge   | ->  |  Balancer  |  ->  | MICROSERVICIOS | -> |          |
+       | Service |     +------------+      |                |    +----------+
+       |         |           ^  |          |                |
+  ->   |         |           |  v          |                |    +----------+
+       |         |     +------------+      |     Circuit    |    | Configu- |
+       |         |     |  Registry  |  <-  |     Breaker    | <- |  ración  |
+       +---------+     +------------+      +----------------+    +----------+
+
+Spring Boot - Spring Cloud:
+
+       +---------+     +------------+      +----------------+    +----------+
+       |         |     |   Ribbon   |      |                |    | Logging  |
+       |         | ->  |            |  ->  | MICROSERVICIOS | -> |Log4,ELK..|
+       | Gateway |     +------------+      |                |    +----------+
+       |         |           ^  |          |                |
+  ->   |         |           |  v          |                |    +------------+
+       |         |     +------------+      |     Hystrix    |    |Spring,Cloud|
+       |         |     |   Eureka   |  <-  |                | <- | Config,etc.|
+       +---------+     +------------+      +----------------+    +------------+
+
+
+
+Los Microservicios, son tanto una arquitectura como un modo para desarrollar software que consiste en contruir una
+aplicación como un conjunto de pequeños servicios independientes entre sí, los cuales se ejecutan en su propio
+proceso y se comunican  con mecanismos ligeros (normalmente una API REST).
+
+Ventajas:
+
+- Escalabilidad: Escalado eficiente, elástico y horizontal aumentando o disminuyendo la cantidad de microservicios
+  de acuerdo a la demanda. Brinda la alta disponibilidad.
+- Modularidad: Cada servicio tiene un función acotada. Lo hará bien produciendo eficiencia y Simplicidad.
+- Heterogeneos: Cada microservicio puede ser desarrollado en una tecnología diferente, lenguaje, DB, pero integrandose
+  como una sola aplicación.
+- Desacoplamiento: Cada microservicio se despliega independientemente.
+- Rápido despliegue: Integración y despliegue continuo usando contenedores.
+
+
+Con Spring Boot Starter Web, nuestro servicio contendrá una clase principal que arranca la aplicación, arranca un
+apache tomcat embebido.
+Esta clase tendrá la anotación @SpringBootApplication, y será una interface que tiene la anotación
+@SpringBootConfiguration para cargar las configuraciones (resources > application.properties) y @
+ComponentScan para hacer un escaneo de todas las clases del proyecto
