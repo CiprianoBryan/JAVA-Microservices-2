@@ -79,3 +79,6 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
   > Implementa varios métodos que utilizaremos, además extiende de:
   > PagingAndSorting..: Para el paginado automático.
   > QueryBy..: Genera automáticamente las querys.
+- @AllArgsConstructor: Agregar un constructor con todos los campos.
+- @NoArgsConstructor: Agregar un constructor sin argumentos.
+- @Builder: Para construir nuevas instancias de la entidad.
