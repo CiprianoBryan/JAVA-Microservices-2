@@ -69,6 +69,7 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
 > repository: Contiene las interfaces los cuales tienen métodos que interactuaran con la BD.
   - Desde la capa de servicio se hará uso de estas clases, con Autowired las inyectaremos.
 > Service: Los métodos que van a definir la capa de servicio.
+> Controller: Clases API REST, donde usaremos las clases de la capa de servicio.
 
 ###############################################################################
 ################################## DATOS ######################################
@@ -128,3 +129,5 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
 
   @RequiredArgsConstructor: Se hace una inyección de dependencias por constructor.
 
+- @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}): Lo usamos cuando hacemos uso del tipo Lazy en un entity
+  para definir la estrategia en la relación con otra tabla, esto nos evita un error que se genera al imprimir el entity.

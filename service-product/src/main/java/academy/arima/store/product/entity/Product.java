@@ -1,5 +1,6 @@
 package academy.arima.store.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,5 +29,6 @@ public class Product {
     private Date createAt;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Category category;
 }
