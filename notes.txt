@@ -62,6 +62,15 @@ Eureka Discovery Client: Registrar servicios, y aplicar Load Balancer.
 Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada solicitud.
 
 ###############################################################################
+################################# PAQUETES ####################################
+###############################################################################
+
+> entity: Contiene las clases que representan a las tablas de la base de datos.
+> repository: Contiene las interfaces los cuales tienen métodos que interactuaran con la BD.
+  - Desde la capa de servicio se hará uso de estas clases, con Autowired las inyectaremos.
+> Service: Los métodos que van a definir la capa de servicio.
+
+###############################################################################
 ################################## DATOS ######################################
 ###############################################################################
 
