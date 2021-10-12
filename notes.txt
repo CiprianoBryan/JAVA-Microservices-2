@@ -91,3 +91,40 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
 - @AllArgsConstructor: Agregar un constructor con todos los campos.
 - @NoArgsConstructor: Agregar un constructor sin argumentos.
 - @Builder: Para construir nuevas instancias de la entidad.
+- @DataJpaTest: Anotación a colocar en una clase test para evaluar el repository, nos provee toda la configuración JPA
+- @SpringBootTest: Anotación a colocar en una clase test de la capa de servicio.
+- @Mock: Utilizado cuando no queremos inyectar una clase y usar los métodos como tal, sino simularla.
+- @BeforeEach: Para ejecutar el método al inicio cada vez que se corre la clase test.
+- Al usar @Autowired, se inyectan automáticamente las dependencias de una clase (ejm: repository) que se usa como
+  atributo en otra (service), y en caso como por ejm de crear una clase Test para testear la clase (service),
+  tendriamos como atributo a la clase (service), al cual debemos inicializarla y pasarle todos sus atributos,
+  incluyendo clases (repository), y es por esto último que no se podría construir la clase (service) ya que su
+  parámetro clase (repository) se inyecta automáticamente por lo que no se puede enviar una con valores.
+
+  * Class service:
+  @Service
+  public class ProductServiceImpl implements ProductService {
+      @Autowired
+      private ProductRepository productRepository;
+
+  * Class Test:
+  @SpringBootTest
+  public class ProductServiceMockTest {
+      @Mock
+      private ProductRepository productRepository;
+      private ProductService productService;
+
+      @BeforeEach
+      private void setup() {
+          productService = new ProductServiceImpl(productRepository);  ... ERROR
+      }
+  }
+
+  Por ello, se debe cambiar el @Autowired para que permita inicializar el atributo clase (repository).
+  Y que a la vez también se inyecte automáticamente. Esto se puede lograr realizando el cambio de que la
+  inyección no se realice desde la declaración del atributo clase (repository) sino dentro del constructor,
+  es decir que si se pasa el valor del atributo al construir la clase (service), esta se colocará inyectará automáticamente,
+  o viceversa, si se pasa el atributo clase (service), esta se inicializará con esos valores.
+
+  @RequiredArgsConstructor: Se hace una inyección de dependencias por constructor.
+
