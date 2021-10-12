@@ -131,3 +131,14 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
 
 - @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}): Lo usamos cuando hacemos uso del tipo Lazy en un entity
   para definir la estrategia en la relación con otra tabla, esto nos evita un error que se genera al imprimir el entity.
+- @Valid: Lo colocamos al lado del campo que queremos que se apliquen las validaciones definidad en su entity.
+  Validaciones como:
+  @Positive(message = "El stock debe ser mayor que cero")
+  @NotEmpty(message = "El nombre no debe ser vacío")
+  @NotNull(message = "La categoría no debe ser vacia")
+  BindingResult:
+  Debemos agregar también un parámetro del tipo BindingResult, el cual contendrá el resultado con todos los errores.
+
+  * ProductController:
+  @PostMapping
+      public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product, BindingResult result) {
