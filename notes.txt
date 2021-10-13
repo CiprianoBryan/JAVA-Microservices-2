@@ -142,3 +142,14 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
   * ProductController:
   @PostMapping
       public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product, BindingResult result) {
+
+- @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  CascadeType.ALL significa que hará todas las demás acciones:
+  > CascadeType.PERSIST: Cuando persiste una entidad, también persisten las entidades que se encuentran en sus campos.
+  > CascadeType.REMOVE: Al eliminar una entidad, también elimina las entidades contenidas en este campo.
+  > CascadeType.REFRESH: al actualizar una entidad, también actualice las entidades contenidas en este campo.
+  > CascadeType.MERGE: al fusionar el estado de la entidad, fusiona también las entidades contenidas en este campo.
+
+- @Valid: Se puede colocar dentro de un campo de una entity para que se apliquen sus validaciones.
+- @PrePersist: Para registrar automáticamente antes de insertar en la Base de Datos. Es decir aplicarle alguna acción.
+- @Transient: Lo colocamos en el atributo que no queremos registrar en nuestra base de datos.
