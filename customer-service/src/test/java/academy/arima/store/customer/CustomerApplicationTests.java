@@ -1,4 +1,4 @@
-package academy.arima.store.customerservice;
+package academy.arima.store.customer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
