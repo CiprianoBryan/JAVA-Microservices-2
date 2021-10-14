@@ -59,6 +59,14 @@ ComponentScan para hacer un escaneo de todas las clases del proyecto.
 - Activar el proyecto como un servidor de configuración
   Colocamos la anotación @EnableConfigServer en la clase pricipal.
 
+- Si queremos que el archivo que contenga los datos de configuración del config-service se llame
+  bootstrap.yml y no application.yml, debemos agregar la siguiente dependencia:
+
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bootstrap</artifactId>
+    </dependency>
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
