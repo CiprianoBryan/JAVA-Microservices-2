@@ -90,6 +90,45 @@ ComponentScan para hacer un escaneo de todas las clases del proyecto.
   Source:
   https://stackoverflow.com/questions/32997352/what-is-the-difference-between-putting-a-property-on-application-yml-or-bootstra
 
+- Los servicios deben conectarse al config-server al ya no tener su archivo de propiedades (application.yml)
+  Se le creará el archivo bootstrap.yml que indicará la uri donde se levanta el config server para obtener su configuración.
+
+  customer-service/src/main/resources/bootstrap.yml:
+  spring:
+    application:
+      name: customer-service
+    cloud:
+      config:
+        uri: http://localhost:8081
+        username: root
+        password: s3cr3t
+
+- En el config server se puede definir una autenticación gracias a Spring Security:
+  config-service/src/main/resources/bootstrap.yml:
+  spring:
+    security:
+      user:
+        name: root
+        password: s3cr3t
+
+  Y de esta forma para acceder al config-server cuando se levanta debemos ingresar el userName y password,
+  si es através de una petición REST colocando Authentication y las credenciales, y si es através de un microservicio
+  definir las credenciales en su bootstrap.yml
+
+- Especificamos la ubicación del repositorio central con las configuraciones de los microservicios con:
+  spring:
+    cloud:
+      config:
+        server:
+          git:
+            uri: https://github.com/CiprianoBryan/JAVA-Microservices-2.git
+            search-paths: config-data
+            username: ${GIT_USER}
+            password: ${GIT_PASSWORD}
+  Si es un repositorio remoto colocamos el usuario y contraseña de la cuenta.
+  Si es un archivo local solo colocamos el uri:
+    file:///F:/Cursos_Udemy/Master_Microservices_with_Spring_Boot_and_Spring_Cloud/Practice/git-localconfig-repo/
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
