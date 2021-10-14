@@ -47,7 +47,17 @@ Con Spring Boot Starter Web, nuestro servicio contendrá una clase principal que
 apache tomcat embebido.
 Esta clase tendrá la anotación @SpringBootApplication, y será una interface que tiene la anotación
 @SpringBootConfiguration para cargar las configuraciones (resources > application.properties) y @
-ComponentScan para hacer un escaneo de todas las clases del proyecto
+ComponentScan para hacer un escaneo de todas las clases del proyecto.
+
+########################## CLOUD CONFIG SERVER ################################
+
+- Servidor de configuración centralizado
+- Jerarquia de configuración (A través de profiles:dev,qa, vamos a definir las configuraciones para distintos entornos)
+- Histórico de configuración (la configuración se puede registrar en un controlador de versiones como github, gitlab..)
+- Recarga de valores de propiedades en caliente.
+
+- Activar el proyecto como un servidor de configuración
+  Colocamos la anotación @EnableConfigServer en la clase pricipal.
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
@@ -153,3 +163,4 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
 - @Valid: Se puede colocar dentro de un campo de una entity para que se apliquen sus validaciones.
 - @PrePersist: Para registrar automáticamente antes de insertar en la Base de Datos. Es decir aplicarle alguna acción.
 - @Transient: Lo colocamos en el atributo que no queremos registrar en nuestra base de datos.
+- @EnableConfigServer: Activa el proyecto como un servidor de configuración al colocar la anotación en la clase pricipal.
