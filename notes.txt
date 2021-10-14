@@ -67,6 +67,29 @@ ComponentScan para hacer un escaneo de todas las clases del proyecto.
         <artifactId>spring-cloud-starter-bootstrap</artifactId>
     </dependency>
 
+- El archivo application.yml / application.properties es específico de las aplicaciones Spring Boot. A menos que
+  cambie la ubicación de las propiedades externas de una aplicación, Spring Boot siempre cargará application.yml
+  desde la siguiente ubicación:
+  /src/main/resources/application.yml
+
+  bootstrap.yml
+
+  bootstrap.yml, por otro lado, es específico de spring-cloud-config y se carga antes que application.yml
+  bootstrap.yml solo es necesario si está utilizando Spring Cloud y su configuración de microservicio está almacenada
+  en un Spring Cloud Config Server remoto.
+
+  1. Cuando se usa con el servidor Spring Cloud Config, debe especificar el nombre de la aplicación y la ubicación de
+     configuración de git usando las propiedades a continuación.
+
+     spring.application.name: "nombre de la aplicación"
+     spring.cloud.config.server.git.uri: "git-uri-config"
+
+  2. Cuando se usa con microservicios (que no sean el servidor de configuración en la nube), necesitamos especificar
+     el nombre de la aplicación y la ubicación del servidor de configuración usando las propiedades siguientes.
+
+  Source:
+  https://stackoverflow.com/questions/32997352/what-is-the-difference-between-putting-a-property-on-application-yml-or-bootstra
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
