@@ -61,10 +61,12 @@ ComponentScan para hacer un escaneo de todas las clases del proyecto.
 Config Server (Spring Cloud Config)
 Spring Security (Security)
 
-##########
+########## ACTIVAR PROYECTO (CLASE PRINCIPAL):
 
 - Activar el proyecto como un servidor de configuración
   Colocamos la anotación @EnableConfigServer en la clase pricipal.
+
+##########
 
 - Si queremos que el archivo que contenga los datos de configuración del config-service se llame
   bootstrap.yml y no application.yml, debemos agregar la siguiente dependencia:
@@ -151,6 +153,12 @@ Spring Security (Security)
 
 Eureka Server (Spring Cloud Discovery)
 Config Client (Spring Cloud Config)
+
+########## ACTIVAR PROYECTO (CLASE PRINCIPAL):
+
+- Activar el proyecto para que trabaje como un Eureka Server
+  Colocamos la anotación @EnableEurekaServer en la clase pricipal.
+- En el repositorio central de configuración (config-data) colocaremos el archivo de configuración del EurekaServer
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
