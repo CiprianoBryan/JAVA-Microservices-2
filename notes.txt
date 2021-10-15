@@ -162,11 +162,11 @@ Config Client (Spring Cloud Config)
 ########## PROPERTIE FILE:
 propertie files in config data (Repo Central Config):
 
-- registry-service.yml (Eureka server): Definimos eureka.client.service-url.default-zone:
+- registry-service.yml (Eureka server): Definimos eureka.client.service-url.defaultZone:
     http://${eureka.instance.hostname}:${server.port}/eureka/
   Con esto indicamos donde se está lanzando nuestro Eureka Server
 - <microservice-application-name>.yml :
-- customer-service.yml (Microservicio): Definimos eureka.client.service-url.default-zone:
+- customer-service.yml (Microservicio): Definimos eureka.client.service-url.defaultZone:
     http://localhost:8099/eureka/
   Con esto indicamos donde se encuentra nuestro Eureka Server para que el microservicio se registre.
 
