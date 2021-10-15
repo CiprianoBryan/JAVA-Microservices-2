@@ -56,6 +56,13 @@ ComponentScan para hacer un escaneo de todas las clases del proyecto.
 - Histórico de configuración (la configuración se puede registrar en un controlador de versiones como github, gitlab..)
 - Recarga de valores de propiedades en caliente.
 
+########## DEPENDENCIES:
+
+Config Server (Spring Cloud Config)
+Spring Security (Security)
+
+##########
+
 - Activar el proyecto como un servidor de configuración
   Colocamos la anotación @EnableConfigServer en la clase pricipal.
 
@@ -128,6 +135,22 @@ ComponentScan para hacer un escaneo de todas las clases del proyecto.
   Si es un repositorio remoto colocamos el usuario y contraseña de la cuenta.
   Si es un archivo local solo colocamos el uri:
     file:///F:/Cursos_Udemy/Master_Microservices_with_Spring_Boot_and_Spring_Cloud/Practice/git-localconfig-repo/
+
+############################## EUREKA SERVER ##################################
+
+- Nos permite el registro y localización de instancias de Microservicios que están corriendo.
+- Cada instancia de Microservicio (con Eureka Client) notifica su estado al Eureka server cada 30s (heartbeats).
+- Cada Microservicio cachea una copia del registro de Eureka Server para saber cuales son los Microservicios ejecutandose
+  en el Eureka server.
+- Funciona en modo cluster, es recomendable cuando se lanza en producción.
+- Modo Selft-Preservation, entra en este modo cuando un número de Microservicios registrados no notifican su estado de
+  salud a Eureka Server, de esta manera Eureka Server determina que hay problemas en la red.
+
+
+########## DEPENDENCIES:
+
+Eureka Server (Spring Cloud Discovery)
+Config Client (Spring Cloud Config)
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
