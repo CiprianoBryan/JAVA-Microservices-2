@@ -170,7 +170,7 @@ propertie files in config data (Repo Central Config):
     http://localhost:8099/eureka/
   Con esto indicamos donde se encuentra nuestro Eureka Server para que el microservicio se registre.
 
-##########
+########## MICROSERVICIOS:
 
 - Además en los microservicios que se registraran debemos añadir la dependencia:
     Eureka Client:
@@ -178,6 +178,8 @@ propertie files in config data (Repo Central Config):
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
+
+  También agregar la anotación @EnableEurekaClient en la clase principal del microservicio.
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
