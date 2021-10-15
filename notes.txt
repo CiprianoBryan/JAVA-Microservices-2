@@ -148,7 +148,6 @@ Spring Security (Security)
 - Modo Selft-Preservation, entra en este modo cuando un número de Microservicios registrados no notifican su estado de
   salud a Eureka Server, de esta manera Eureka Server determina que hay problemas en la red.
 
-
 ########## DEPENDENCIES:
 
 Eureka Server (Spring Cloud Discovery)
@@ -159,6 +158,26 @@ Config Client (Spring Cloud Config)
 - Activar el proyecto para que trabaje como un Eureka Server
   Colocamos la anotación @EnableEurekaServer en la clase pricipal.
 - En el repositorio central de configuración (config-data) colocaremos el archivo de configuración del EurekaServer
+
+########## PROPERTIE FILE:
+propertie files in config data (Repo Central Config):
+
+- registry-service.yml (Eureka server): Definimos eureka.client.service-url.default-zone:
+    http://${eureka.instance.hostname}:${server.port}/eureka/
+  Con esto indicamos donde se está lanzando nuestro Eureka Server
+- <microservice-application-name>.yml :
+- customer-service.yml (Microservicio): Definimos eureka.client.service-url.default-zone:
+    http://localhost:8099/eureka/
+  Con esto indicamos donde se encuentra nuestro Eureka Server para que el microservicio se registre.
+
+##########
+
+- Además en los microservicios que se registraran debemos añadir la dependencia:
+    Eureka Client:
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
