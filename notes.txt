@@ -253,6 +253,26 @@ propertie file of Microservice that use Hystrix in config data (Repo Central Con
   Luego clickeamos "Monitor Stream"
 - Podremos ver que cuando falla un microservicio que consultamos desde otro, se lanzará su fallback.
 
+
+################################# API GATEWAY #################################
+
+- Proporciona una puerta de entrada única a nuestro ecosistema de microservicios para peticiones desde dispositivos
+  móviles, sitios web u otros sistemas externos.
+- Enrutamiento dinámico, monitorización y seguridad de accesos.
+- Carga de filtros en caliente.
+
+- Nos permite tener una sola puerta de entrada al conjunto de microservicios
+- El cliente no va a acceder directamente a cada uno de los microservicios, sino lo hará a través de la puerta de enlace.
+- Va a trabajar conjuntamente con Eureka Server (registry service)
+
+########## DEPENDENCIES:
+
+Gateway (Spring Cloud Routing)
+Config Client (Spring Cloud Config)
+Eureka Discovery Client (Spring Cloud Discovery)
+
+
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
