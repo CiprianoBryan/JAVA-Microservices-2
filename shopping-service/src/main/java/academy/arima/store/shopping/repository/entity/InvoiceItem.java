@@ -1,5 +1,6 @@
 package academy.arima.store.shopping.repository.entity;
 
+import academy.arima.store.shopping.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,9 @@ public class InvoiceItem {
     private Long productId;
     @Transient
     private Double subTotal;
+
+    @Transient
+    private Product product;
 
     public Double getSubTotal() {
         if (price > 0 && quantity > 0) {

@@ -1,5 +1,6 @@
 package academy.arima.store.shopping.repository.entity;
 
+import academy.arima.store.shopping.model.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,9 @@ public class Invoice {
     @JoinColumn(name = "invoice_id")
     private List<InvoiceItem> items;
     private String status;
+
+    @Transient
+    private Customer customer;
 
     public Invoice() {
         this.items = new ArrayList<>();

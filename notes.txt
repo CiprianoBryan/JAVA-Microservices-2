@@ -181,6 +181,29 @@ propertie files in config data (Repo Central Config):
 
   También agregar la anotación @EnableEurekaClient en la clase principal del microservicio.
 
+
+################################## FEIGN ######################################
+
+- Liberia para generar clientes de servicio REST de manera declarativa sin la necesidad de utilizar RestTemplate.
+- Integraciín con Eureka para descubrimiento.
+- Integración con Hystrix, permitiendo definir fallback a nivel de cliente. (CIRCUIT BREAKER)
+- Integración con Ribbon para balanceo de carga.
+
+########## PACKAGES :
+
+- model package contendrá clases copia de los entitys de los otros microservicios que se quiere consumir.
+  Pero solo contendrá los campos, sin anotaciones.
+- Y en los entitys propios del microservicio se añadiran estos entitys (otros microservicios) como campos.
+  Con @Transient porque no deben almacenarse en la BD, además que no están en la tabla.
+- client package contendrá los clientes de feign para conectar con los microservicios, las clases dentro del paquete
+  serán interfaces el cuál contendrán la definición del método a consumir, con sus atributos y el @RequestMapping
+  del controller, además también a la interface se le deberá colocar la anotación @FeignClient(name = "<name microservice>")
+
+########## ACTIVAR PROYECTO (CLASE PRINCIPAL):
+
+- Activar el proyecto para que se puedan utilizar los clientes de Feign.
+  Colocamos la anotación @EnableFeignClients en la clase pricipal.
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
