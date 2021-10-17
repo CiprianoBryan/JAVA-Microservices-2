@@ -204,6 +204,10 @@ propertie files in config data (Repo Central Config):
 - Activar el proyecto para que se puedan utilizar los clientes de Feign.
   Colocamos la anotación @EnableFeignClients en la clase pricipal.
 
+##########
+
+- Luego en el controller inyectamos las clases client, y así usar los métodos (servicios REST) de los otros microservicios.
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
