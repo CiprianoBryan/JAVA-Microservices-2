@@ -2,7 +2,9 @@ package academy.arima.store.shopping.client;
 
 import academy.arima.store.shopping.model.Customer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerHystrixFallbackFactory implements CustomerClient {
     @Override
     public ResponseEntity<Customer> getCostumer(Long id) {

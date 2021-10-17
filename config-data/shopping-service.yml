@@ -23,8 +23,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8099/eureka/
 
-Feign:
+feign:
   hystrix:
+    enabled: true
+  circuitbreaker:
     enabled: true
 hystrix:
   dashboard:
