@@ -271,7 +271,29 @@ Gateway (Spring Cloud Routing)
 Config Client (Spring Cloud Config)
 Eureka Discovery Client (Spring Cloud Discovery)
 
+########## PROPERTIE FILE:
+propertie file of API-GATEWAY in config data (Repo Central Config):
+   gateway-service.yml
 
+server.port: 8080                                                   -> Puerto en el que va a correr
+eureka.client.service-url.defaultZone: http://localhost:8099/eureka -> Configuration EurekaClient, connect to EurekaServer
+spring.cloud.gateway.discovery.locator.enabled: true                -> Habilita la comunicación del API Gateway con Eureka
+spring.cloud.gateway.routes:                                    -> Ruteo de los servicios
+- id: customer-service        -> El nombre de la ruta
+  uri: lb://customer-service
+  predicates:                 -> Filtro que aplicará al path de las llamadas a los microservicios, cuando llegue un _
+    - Path=/customers/**      -> request al gateway leerá el path y buscará si existe /customers/**, y lo redigirá al uri.
+
+- id: product-service
+  uri: lb://service-product   -> Cuando realicemos un request al API GATEWAY con el Path /products/**, redigirá el request
+  predicates:                 -> a la uri: lb://service-product (endpoint = uri + Path), por ejm:
+    - Path=/products/**          Al realizar la petición GET a localhost:8080/products/3/stock?quantity=10 (/products/**)
+                                 Lo redireccionará a: lb://service-product/products/3/stock?quantity=10
+                                                                                    (lb://service-product/products/**)
+- id: shopping-service
+  uri: lb://shopping-service
+  predicates:
+    - Path=/invoices/**
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
