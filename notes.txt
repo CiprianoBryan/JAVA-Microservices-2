@@ -199,7 +199,7 @@ propertie files in config data (Repo Central Config):
   serán interfaces el cuál contendrán la definición del método a consumir, con sus atributos y el @RequestMapping
   del controller, además también a la interface se le deberá colocar la anotación @FeignClient(name = "<name microservice>")
 
-########## ACTIVAR PROYECTO (CLASE PRINCIPAL):
+########## ACTIVAR FEIGN CLIENT (CLASE PRINCIPAL):
 
 - Activar el proyecto para que se puedan utilizar los clientes de Feign.
   Colocamos la anotación @EnableFeignClients en la clase pricipal.
@@ -207,6 +207,44 @@ propertie files in config data (Repo Central Config):
 ##########
 
 - Luego en el controller inyectamos las clases client, y así usar los métodos (servicios REST) de los otros microservicios.
+
+
+########################## HYSTRIX - FAULT TOLERANCE ##########################
+
+- Implementa Patrón Cicuit-Breaker
+- Finalidad: Mejorar la fiabilidad del sistema
+- Control de latencia y tolerancia a fallos.
+
+- En caso falle uno de los microservicios, implementará un fallback (respuesta alternativa).
+- Si sigue fallando el microservicio, y pasa cierto tiempo (umbral) indicará que se abra el circuito, es decir que ya
+  no se envien las peticiones a ese microservicio, porque todas esas peticiones se encolarian.
+
+########## DEPENDENCIES:
+
+Actuator (org.springframework.boot:spring-boot-starter-actuator)
+Hystrix (org.springframework.cloud:spring-cloud-starter-netflix-hystrix)
+Hystrix Dashboard (org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard)
+
+########## ACTIVAR HYSTRIX (CLASE PRINCIPAL):
+
+- Activar el proyecto para que se pueda utilizar Hystrix y Hystrix Dashboard.
+  Colocamos la anotación @EnableFeignClients en la clase pricipal.
+
+########## PROPERTIE FILE:
+propertie file of Microservice that use Hystrix in config data (Repo Central Config):
+
+- Feign.hystrix.enabled: true              -> Para habilitar hystrix con feign
+- management.endpoints.web.exposure.include: "*" -> Para habilitar actuator
+
+##########
+
+- Luego nos ubicamos en un microservice client, para implementar su fallback, es decir su respuesta alternativa en caso
+  fallase el microservicio. Para eso crearemos una clase que implementa el interface microservice client.
+- En el fallback implementamos los métodos del interface microservice client, de tal manera que queramos que actue cuando
+  el microservicio falle.
+- Finalmente en el interface microservice client agregaremos el parámetro fallback en la anotación @FeignClient, siendo:
+  @FeignClient(name = "customer-service", fallback = CustomerHystrixFallbackFactory.class), indicando en el parámetro
+  fallback el nombre de la clase fallback al client.
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
