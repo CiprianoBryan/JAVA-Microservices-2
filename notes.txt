@@ -233,7 +233,9 @@ Hystrix Dashboard (org.springframework.cloud:spring-cloud-starter-netflix-hystri
 ########## PROPERTIE FILE:
 propertie file of Microservice that use Hystrix in config data (Repo Central Config):
 
-- Feign.hystrix.enabled: true              -> Para habilitar hystrix con feign
+- feign.hystrix.enabled: true              -> Para habilitar hystrix con feign
+- feign.circuitbreaker.enabled: true       -> Activar el Fault Tolerance
+- hystrixdashboard.proxy-stream-allow-list: "*"  -> Para habilitar el acceso al endpoint
 - management.endpoints.web.exposure.include: "*" -> Para habilitar actuator
 
 ##########
@@ -241,10 +243,15 @@ propertie file of Microservice that use Hystrix in config data (Repo Central Con
 - Luego nos ubicamos en un microservice client, para implementar su fallback, es decir su respuesta alternativa en caso
   fallase el microservicio. Para eso crearemos una clase que implementa el interface microservice client.
 - En el fallback implementamos los métodos del interface microservice client, de tal manera que queramos que actue cuando
-  el microservicio falle.
+  el microservicio falle, además le agregaremos la anotación @Component.
 - Finalmente en el interface microservice client agregaremos el parámetro fallback en la anotación @FeignClient, siendo:
   @FeignClient(name = "customer-service", fallback = CustomerHystrixFallbackFactory.class), indicando en el parámetro
   fallback el nombre de la clase fallback al client.
+- Para visualizar las métricas de las peticiones abrimos el hystrix dashboard
+  http://localhost:8093/hystrix
+  Colocamos: http://localhost:8093/actuator/hystrix.stream
+  Luego clickeamos "Monitor Stream"
+- Podremos ver que cuando falla un microservicio que consultamos desde otro, se lanzará su fallback.
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
