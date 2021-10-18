@@ -290,10 +290,16 @@ spring.cloud.gateway.routes:                                    -> Ruteo de los 
     - Path=/products/**          Al realizar la petición GET a localhost:8080/products/3/stock?quantity=10 (/products/**)
                                  Lo redireccionará a: lb://service-product/products/3/stock?quantity=10
                                                                                     (lb://service-product/products/**)
-- id: shopping-service
-  uri: lb://shopping-service
-  predicates:
-    - Path=/invoices/**
+                                 El cual apunta al endpoint de service-product:
+                                   http://localhost:8091/products/3/stock?quantity=10
+
+                                 Practicamente el viaje del request sería:
+                                 API GATEWAY ->
+                                     LOAD BALANCER (EUREKA) ->
+                                         MICROSERVICE :
+                                 http://localhost:8080/products/3/stock?quantity=10 ->
+                                     http://localhost:8099/service-product/products/3/stock?quantity=10 ->
+                                         http://localhost:8091/products/3/stock?quantity=10
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
