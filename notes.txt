@@ -301,6 +301,21 @@ spring.cloud.gateway.routes:                                    -> Ruteo de los 
                                      http://localhost:8099/service-product/products/3/stock?quantity=10 ->
                                          http://localhost:8091/products/3/stock?quantity=10
 
+
+################################### ACTUATOR ##################################
+
+- Spring Boot Actuator es una libreria que proporciona out-of-the-box con amplia colección de funcionalidades de
+  monitorización y administración para aplicaciones desarrolladas con Spring Boot accesibles mediante endpoints
+  vía REST y/o con JMX Bean.
+
+########## PROPERTIE FILE:
+propertie file del Microservice que reportará a Actuator in config data (Repo Central Config):
+
+management.endpoints.web.exposure.include: "*" -> Esto habilitará para que Actuator monitoree el microservicio
+
+########## DEPENDENCIES:
+Actuator (Spring Boot Actuator) [org.springframework.boot:spring-boot-starter-actuator]
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
