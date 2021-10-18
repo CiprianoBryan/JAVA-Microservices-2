@@ -50,6 +50,8 @@ Esta clase tendrá la anotación @SpringBootApplication, y será una interface q
 ComponentScan para hacer un escaneo de todas las clases del proyecto.
 
 ########################## CLOUD CONFIG SERVER ################################
+NAME PROJECT: config-service
+NAME REPO CONFIG: config-data
 
 - Servidor de configuración centralizado
 - Jerarquia de configuración (A través de profiles:dev,qa, vamos a definir las configuraciones para distintos entornos)
@@ -139,6 +141,7 @@ Spring Security (Security)
     file:///F:/Cursos_Udemy/Master_Microservices_with_Spring_Boot_and_Spring_Cloud/Practice/git-localconfig-repo/
 
 ############################## EUREKA SERVER ##################################
+NAME PROJECT: registry-service
 
 - Nos permite el registro y localización de instancias de Microservicios que están corriendo.
 - Cada instancia de Microservicio (con Eureka Client) notifica su estado al Eureka server cada 30s (heartbeats).
@@ -255,6 +258,7 @@ propertie file of Microservice that use Hystrix in config data (Repo Central Con
 
 
 ################################# API GATEWAY #################################
+NAME PROJECT: gateway-service
 
 - Proporciona una puerta de entrada única a nuestro ecosistema de microservicios para peticiones desde dispositivos
   móviles, sitios web u otros sistemas externos.
