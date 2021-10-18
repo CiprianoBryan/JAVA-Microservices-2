@@ -140,6 +140,13 @@ Spring Security (Security)
   Si es un archivo local solo colocamos el uri:
     file:///F:/Cursos_Udemy/Master_Microservices_with_Spring_Boot_and_Spring_Cloud/Practice/git-localconfig-repo/
 
+- Podemos visualizar la configuración de un microservicio, ingresando a la uri del config-service (localhost:8081) y
+  como path el nombre del microservicio (customer-service) y el entorno. (default, qa, prod...)
+  http://localhost:8081/customer-service/default
+
+  Y colocando la autenticación si se le puso.
+
+
 ############################## EUREKA SERVER ##################################
 NAME PROJECT: registry-service
 
@@ -319,6 +326,46 @@ management.endpoints.web.exposure.include: "*" -> Esto habilitará para que Actu
 
 ########## DEPENDENCIES:
 Actuator (Spring Boot Actuator) [org.springframework.boot:spring-boot-starter-actuator]
+
+##########
+
+- Para visualizar todos los endpoints de un microservicio con actuator ingresamos al uri donde se lanza y
+  agregamos el path /actuator:
+  CustomerApplication (customer-service):
+  http://localhost:8092/actuator
+
+################################ ADMIN SERVER #################################
+NAME PROJECT: admin-service
+
+- Para visualizar de una mejor manera y administrar cierta información.
+- Los microservicios le envían información a Admin server através de Actuator.
+
+########## DEPENDENCIES:
+
+Spring Boot Admin (Server)
+
+########## ACTIVAR PROYECTO (CLASE PRINCIPAL):
+
+- Activar el proyecto para que se pueda utilizar el admin server.
+  Colocamos la anotación @EnableAdminServer en la clase pricipal.
+
+########## MICROSERVICIOS:
+
+- Además en los microservicios debemos añadir la dependencia:
+    Spring Boot Admin Client:
+    <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-client</artifactId>
+    </dependency>
+
+- También debemos añadir en su propertie file del microservicio:
+  spring.boot.admin.client.url: http://localhost:8086 -> Indicamos donde está corriendo el admin server
+
+##########
+
+- Para visualizar el Admin server debemos ingresar a la uri con el puerto especificado:
+  http://localhost:8096
+
 
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
