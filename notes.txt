@@ -367,6 +367,22 @@ Spring Boot Admin (Server)
   http://localhost:8096
 
 
+################################## SLEUTH #####################################
+
+- Es una librería que implementa una solución de trazado distribuido para Spring Cloud. Con tan solo incluir la
+  dependencia con Sleuth en los microservicios, dotamos al ecosistema de un mecanismo automático de identificación de
+  peticiones, ya que añade varios campos útiles a las mismas para identificarlas.
+
+########## MICROSERVICIOS:
+
+- En los microservicios debemos añadir la dependencia:
+  org.springframework.cloud:spring-cloud-starter-sleuth
+
+##########
+
+
+
+
 ###############################################################################
 ############################## DEPENDENCIAS ###################################
 ###############################################################################
