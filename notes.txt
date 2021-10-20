@@ -477,6 +477,11 @@ Sleuth: DISTRIBUTED TRACING, es una libreria que asigna un ID único a cada soli
   @PostMapping
       public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product, BindingResult result) {
 
+  Para que se visualice el mensaje de error cuando no cumple con alguna validación debemos agregar en el propertie file
+  del microservicio lo siguiente:
+    server.error.include-message: always
+    server.error.include-binding-errors: always
+
 - @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   CascadeType.ALL significa que hará todas las demás acciones:
   > CascadeType.PERSIST: Cuando persiste una entidad, también persisten las entidades que se encuentran en sus campos.
